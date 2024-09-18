@@ -1,25 +1,94 @@
 .cardStyle {
-  transition: transform 0.5s ease;
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
   animation: slideInFromBottom 0.5s ease-out;
+  border: 4px solid;
+  border-radius: 10px;
+  background-size: cover;
+}
+
+.cardStyle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.7)
+  );
 }
 
 .cardStyle:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+/* all direct child elements */
+.cardStyle > * {
+  position: relative;
 }
 
-.temperature {
-  color: #ffcc00;
+.weather-icon {
+  width: 120px;
+  height: 120px;
 }
 
-.conditions {
-  color: #ffffff;
+.card-title {
+  border: 2px solid white;
+  border-radius: 12px;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
-.humidity {
-  color: #66ccff;
+.card-detail {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 10px;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, border 0.3s ease;
 }
 
-.wind-speed {
-  color: #00ff99;
+.card-detail:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid white;
+}
+
+/* Animation */
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cardStyle {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .weather-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .card-title {
+    font-size: 30px;
+  }
+
+  .card-detail {
+    font-size: 16px;
+  }
 }

@@ -76,7 +76,9 @@ export default function Weather() {
       });
   };
 
-  const weatherCondition = weatherData ? weatherData.weather[0].main.toLowerCase() : null;
+  const weatherCondition = weatherData
+    ? weatherData.weather[0].main.toLowerCase()
+    : null;
 
   const weatherMapping = {
     clear: "/backgrounds/sunny-bg.jpg",
@@ -88,7 +90,7 @@ export default function Weather() {
   const backgroundImage =
     weatherCondition && weatherMapping[weatherCondition]
       ? weatherMapping[weatherCondition]
-      : "/backgrounds/bluesky-bg.jpg"; 
+      : "/backgrounds/bluesky-bg.jpg";
 
   return (
     <div
@@ -98,37 +100,37 @@ export default function Weather() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         transition: "background-image 0.5s ease-in-out",
-        height: "100vh"
-      }}
-    >
-      <div className="top-section mb-8 text-center p-6 ">
+        height: "100vh",
+      }}>
+      <div className="top-section mb-8 text-center p-6">
         <h1 className="text-4xl font-bold mb-4 text-gray-800">Weather App</h1>
         <form
           onSubmit={submitHandler}
-          className="flex justify-center items-center"
-        >
+          className="flex justify-center items-center">
           <input
             type="text"
             placeholder="Enter city name"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="px-4 py-2 text-lg border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="px-4 py-2 text-lg border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
           />
           <button
             type="submit"
-            className="ml-2 px-4 py-2 text-lg font-medium text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          >
+            className="ml-2 px-4 py-2 text-lg font-medium text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
         <button
           onClick={handleLocationSearch}
-          className="mt-4 px-4 py-2 text-lg font-medium text-white bg-green-600 rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400"
-        >
+          className="mt-4 px-4 py-2 text-lg font-medium text-white bg-green-600 rounded-md shadow hover:bg-green-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400">
           <i className="fa-solid fa-location-arrow"></i> Use Current Location
         </button>
         {error && <p className="text-error mt-2">{error}</p>}
-        {loading && <p className="text-blue-500 mt-2">Loading...</p>}
+        {loading && (
+          <div className="loader mt-4">
+            <div className="spinner"></div>
+          </div>
+        )}
       </div>
       <div className="flex flex-1 items-center justify-center">
         {weatherData && <WeatherCard weatherData={weatherData} />}
@@ -136,4 +138,3 @@ export default function Weather() {
     </div>
   );
 }
-
