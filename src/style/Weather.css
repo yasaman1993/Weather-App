@@ -25,6 +25,27 @@ button:hover {
   animation: spin 5s linear infinite;
 }
 
+.weather-container {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the container */
+  z-index: -1; /* Send the video behind other content */
+}
+
+.top-section {
+  position: relative;
+  z-index: 1; /* Ensure content is on top of the video */
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

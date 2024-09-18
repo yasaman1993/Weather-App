@@ -20,7 +20,7 @@ export default function Weather() {
     setLoading(true);
 
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+     ` https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
     )
       .then((response) => {
         if (!response.ok) {
@@ -38,7 +38,7 @@ export default function Weather() {
         setLoading(false);
       });
   }
-
+  // location
   const handleLocationSearch = () => {
     setLoading(true);
 
@@ -57,7 +57,7 @@ export default function Weather() {
 
   const fetchWeather = (latitude, longitude) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+     ` https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
     )
       .then((response) => {
         if (!response.ok) {
@@ -81,27 +81,28 @@ export default function Weather() {
     : null;
 
   const weatherMapping = {
-    clear: "/backgrounds/sunny-bg.jpg",
-    rain: "/backgrounds/rainy-bg.jpg",
-    snow: "/backgrounds/snowy-bg.jpg",
-    clouds: "/backgrounds/cloudy-bg.jpg",
+    clear: "/video/sunny.mp4",
+    rain: "/video/rainy.mp4",
+    snow: "/video/snowy.mp4",
+    clouds: "/video/cloudy.mp4",
+    thunderstorm: "/video/thunderstorm.mp4",
+    fog :  "/video/fog.mp4",
   };
 
-  const backgroundImage =
+  const backgroundVideo =
     weatherCondition && weatherMapping[weatherCondition]
       ? weatherMapping[weatherCondition]
-      : "/backgrounds/bluesky-bg.jpg";
+      : "/video/bluesky.mp4";
 
   return (
-    <div
-      className="weather-container"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        transition: "background-image 0.5s ease-in-out",
-        height: "100vh",
-      }}>
+    <div className="weather-container">
+      <video
+        src={backgroundVideo}
+        autoPlay
+        loop
+        muted
+        className="background-video"
+      />
       <div className="top-section mb-8 text-center p-6">
         <h1 className="text-4xl font-bold mb-4 text-gray-800">Weather App</h1>
         <form
@@ -117,13 +118,14 @@ export default function Weather() {
           <button
             type="submit"
             className="ml-2 px-4 py-2 text-lg font-medium text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
         </form>
         <button
           onClick={handleLocationSearch}
           className="mt-4 px-4 py-2 text-lg font-medium text-white bg-green-600 rounded-md shadow hover:bg-green-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400">
-          <i className="fa-solid fa-location-arrow"></i> Use Current Location
+          <i className="fa-solid fa-location-arrow" aria-hidden="true"></i> Use
+          Current Location
         </button>
         {error && <p className="text-error mt-2">{error}</p>}
         {loading && (
@@ -138,3 +140,4 @@ export default function Weather() {
     </div>
   );
 }
+
