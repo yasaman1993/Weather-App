@@ -81,18 +81,18 @@ export default function Weather() {
     : null;
 
   const weatherMapping = {
-    clear: "/video/sunny.mp4",
-    rain: "/video/rainy.mp4",
-    snow: "/video/snowy.mp4",
-    clouds: "/video/cloudy.mp4",
-    thunderstorm: "/video/thunderstorm.mp4",
-    fog :  "/video/fog.mp4",
+    clear: "./video/sunny.mp4",
+    rain: "./video/rainy.mp4",
+    snow: "./video/snowy.mp4",
+    clouds: "./video/cloudy.mp4",
+    thunderstorm: "./video/thunderstorm.mp4",
+    fog :  "./video/fog.mp4",
   };
 
   const backgroundVideo =
     weatherCondition && weatherMapping[weatherCondition]
       ? weatherMapping[weatherCondition]
-      : "/video/bluesky.mp4";
+      : "./video/bluesky.mp4";
 
   return (
     <div className="weather-container">

@@ -10,20 +10,20 @@ export default function WeatherCard({ weatherData }) {
 
   const weatherMapping = {
     clear: {
-      icon: "/icons/sunny.png",
+      icon: "./icons/sunny.png",
     },
     rain: {
-      icon: "/icons/rainy.png",
+      icon: "./icons/rainy.png",
     },
     snow: {
-      icon: "/icons/snowy.png",
+      icon: "./icons/snowy.png",
     },
     clouds: {
-      icon: "/icons/cloudy.png",
+      icon: "./icons/cloudy.png",
     },
 
     thunderstorm: {
-      icon: "/icons/storm.png",
+      icon: "./icons/storm.png",
     },
   };
 
